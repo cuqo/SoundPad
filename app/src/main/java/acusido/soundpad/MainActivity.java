@@ -1,6 +1,8 @@
 package acusido.soundpad;
 
+import android.media.AudioManager;
 import android.media.Image;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,6 +12,9 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity  {
     ImageButton verd1,verd2,verd3,verd4,lila1,lila2,lila3,lila4;
+    SoundPool soundpool;
+    int soundid,streamid;
+    boolean loaded=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,14 @@ public class MainActivity extends AppCompatActivity  {
         lila2=(ImageButton) findViewById(R.id.imageButton6);
         lila3=(ImageButton) findViewById(R.id.imageButton7);
         lila4=(ImageButton) findViewById(R.id.imageButton8);
+        soundpool=new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                loaded=true;
+            }
+        });
+        soundid=soundpool.load(this,R.raw.bass1,1);
 
 
         verd1.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +47,13 @@ public class MainActivity extends AppCompatActivity  {
                 if(!pitjat) {
                     verd1.setBackgroundResource(R.drawable.azulverdea);
                     pitjat = true;
+
                 } else{
                     verd1.setBackgroundResource(R.drawable.azulverde);
                     pitjat=false;
                 }
+
+
             }
         });
 
@@ -92,11 +108,29 @@ public class MainActivity extends AppCompatActivity  {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
 
                     lila1.setBackgroundResource(R.drawable.lilaa);
+
+                    AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                    float actualVolume = (float) audioManager
+                            .getStreamVolume(AudioManager.STREAM_MUSIC);
+                    float maxVolume = (float) audioManager
+                            .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                    float volume = actualVolume / maxVolume;
+                    // Is the sound loaded already?
+
+                    if(loaded){
+                        streamid = soundpool.play(soundid, volume, volume, 1, -1, 1f);
+
+                    }
+
                     return true;
                 }
                 if(event.getAction() == MotionEvent.ACTION_UP){
 
                     lila1.setBackgroundResource(R.drawable.lila);
+
+                    soundpool.stop(streamid);
+
+
                     return true;
                 }
                 return false;
