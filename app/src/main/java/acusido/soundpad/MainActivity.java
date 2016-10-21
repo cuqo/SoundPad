@@ -3,6 +3,7 @@ package acusido.soundpad;
 import android.media.AudioManager;
 import android.media.Image;
 import android.media.SoundPool;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,11 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener,View.OnTouchListener{
-    ImageButton verd1,verd2,verd3,verd4,lila1,lila2,lila3,lila4;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+    ImageButton verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4;
     SoundPool soundpool;
-    int soundid,streamid;
+    int bass, piano, bassID, pianoID;
     boolean loaded = false, pitjat1 = false, pitjat2 = false, pitjat3 = false, pitjat4 = false;
+    public CountDownTimer temps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +37,30 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         verd3.setOnClickListener(this);
         verd4.setOnClickListener(this);
 
-        soundpool=new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                loaded=true;
+                loaded = true;
             }
         });
-        soundid=soundpool.load(this,R.raw.bass1,1);
+        bass = soundpool.load(this, R.raw.bass1, 1);
+        piano = soundpool.load(this, R.raw.piano1, 1);
+
+        temps = new CountDownTimer(2000, 50) {
+
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+                verd1.setBackgroundResource(R.drawable.azulverde);
+            }
+        }.start();
 
 
 
@@ -54,6 +72,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 if(pitjat) {
                     verd1.setBackgroundResource(R.drawable.azulverdea);
 
+                    }
 
                 } else{
                     verd1.setBackgroundResource(R.drawable.azulverde);
@@ -64,7 +83,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             }
         });
 
-        verd2.setOnClickListener(new View.OnClickListener() {
+        /*verd2.setOnClickListener(new View.OnClickListener() {
             boolean pitjat;
             @Override
             public void onClick(View v) {
@@ -112,7 +131,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         lila1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     lila1.setBackgroundResource(R.drawable.lilaa);
 
@@ -124,18 +143,18 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     float volume = actualVolume / maxVolume;
                     // Is the sound loaded already?
 
-                    if(loaded){
-                        streamid = soundpool.play(soundid, volume, volume, 1, -1, 1f);
+                    if (loaded) {
+                        bassID = soundpool.play(bass, volume, volume, 1, -1, 1f);
 
                     }
 
                     return true;
                 }
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if (event.getAction() == MotionEvent.ACTION_UP) {
 
                     lila1.setBackgroundResource(R.drawable.lila);
 
-                    soundpool.stop(streamid);
+                    soundpool.stop(bassID);
 
 
                     return true;
@@ -148,12 +167,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         lila2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     lila2.setBackgroundResource(R.drawable.lilaa);
                     return true;
                 }
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if (event.getAction() == MotionEvent.ACTION_UP) {
 
                     lila2.setBackgroundResource(R.drawable.lila);
                     return true;
@@ -165,12 +184,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         lila3.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     lila3.setBackgroundResource(R.drawable.lilaa);
                     return true;
                 }
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if (event.getAction() == MotionEvent.ACTION_UP) {
 
                     lila3.setBackgroundResource(R.drawable.lila);
                     return true;
@@ -182,12 +201,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         lila4.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     lila4.setBackgroundResource(R.drawable.lilaa);
                     return true;
                 }
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if (event.getAction() == MotionEvent.ACTION_UP) {
 
                     lila4.setBackgroundResource(R.drawable.lila);
                     return true;
@@ -202,18 +221,31 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
         int id = v.getId();
 
+
         switch (id) {
             case R.id.verd1:
 
-                if (!pitjat1) {
-                    verd1.setBackgroundResource(R.drawable.azulverdea);
+                verd1.setBackgroundResource(R.drawable.azulverdea);
 
 
-                } else {
-                    verd1.setBackgroundResource(R.drawable.azulverde);
+                temps.cancel();
+                temps.start();
+
+
+                AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                float volume = actualVolume / maxVolume;
+                // Is the sound loaded already?
+
+                if (loaded) {
+                    pianoID = soundpool.play(piano, 1, 1, 1, 0, 1f);
 
                 }
+
+
                 pitjat1 = !pitjat1;
+
 
                 break;
 
