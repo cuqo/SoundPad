@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener,View.OnTouchListener{
     ImageButton verd1,verd2,verd3,verd4,lila1,lila2,lila3,lila4;
     SoundPool soundpool;
     int soundid,streamid;
@@ -191,5 +191,15 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.
+        }
+    }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
+    }
 }
