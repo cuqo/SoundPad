@@ -14,21 +14,27 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     ImageButton verd1,verd2,verd3,verd4,lila1,lila2,lila3,lila4;
     SoundPool soundpool;
     int soundid,streamid;
-    boolean loaded=false;
+    boolean loaded = false, pitjat1 = false, pitjat2 = false, pitjat3 = false, pitjat4 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        verd1=(ImageButton) findViewById(R.id.imageButton);
-        verd2=(ImageButton) findViewById(R.id.imageButton2);
-        verd3=(ImageButton) findViewById(R.id.imageButton3);
-        verd4=(ImageButton) findViewById(R.id.imageButton4);
-        lila1=(ImageButton) findViewById(R.id.imageButton5);
-        lila2=(ImageButton) findViewById(R.id.imageButton6);
-        lila3=(ImageButton) findViewById(R.id.imageButton7);
-        lila4=(ImageButton) findViewById(R.id.imageButton8);
+        verd1 = (ImageButton) findViewById(R.id.verd1);
+        verd2 = (ImageButton) findViewById(R.id.verd2);
+        verd3 = (ImageButton) findViewById(R.id.verd3);
+        verd4 = (ImageButton) findViewById(R.id.verd4);
+        lila1 = (ImageButton) findViewById(R.id.lila1);
+        lila2 = (ImageButton) findViewById(R.id.lila2);
+        lila3 = (ImageButton) findViewById(R.id.lila3);
+        lila4 = (ImageButton) findViewById(R.id.lila4);
+
+        verd1.setOnClickListener(this);
+        verd2.setOnClickListener(this);
+        verd3.setOnClickListener(this);
+        verd4.setOnClickListener(this);
+
         soundpool=new SoundPool(10, AudioManager.STREAM_MUSIC,0);
         soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
@@ -39,19 +45,20 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         soundid=soundpool.load(this,R.raw.bass1,1);
 
 
-        verd1.setOnClickListener(new View.OnClickListener() {
+
+        /*verd1.setOnClickListener(new View.OnClickListener() {
             boolean pitjat;
             @Override
             public void onClick(View v) {
 
-                if(!pitjat) {
+                if(pitjat) {
                     verd1.setBackgroundResource(R.drawable.azulverdea);
-                    pitjat = true;
+
 
                 } else{
                     verd1.setBackgroundResource(R.drawable.azulverde);
-                    pitjat=false;
-                }
+
+                }pitjat=!pitjat;
 
 
             }
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     pitjat=false;
                 }
             }
-        });
+        });*/
 
         lila1.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -193,8 +200,55 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        int id = v.getId();
 
+        switch (id) {
+            case R.id.verd1:
+
+                if (!pitjat1) {
+                    verd1.setBackgroundResource(R.drawable.azulverdea);
+
+
+                } else {
+                    verd1.setBackgroundResource(R.drawable.azulverde);
+
+                }
+                pitjat1 = !pitjat1;
+
+                break;
+
+            case R.id.verd2:
+
+                if (!pitjat2) {
+                    verd2.setBackgroundResource(R.drawable.azulverdea);
+
+                } else {
+                    verd2.setBackgroundResource(R.drawable.azulverde);
+                }
+                pitjat2 = !pitjat2;
+                break;
+
+            case R.id.verd3:
+
+                if (!pitjat3) {
+                    verd3.setBackgroundResource(R.drawable.azulverdea);
+
+                } else {
+                    verd3.setBackgroundResource(R.drawable.azulverde);
+                }
+                pitjat3 = !pitjat3;
+                break;
+
+            case R.id.verd4:
+
+                if (!pitjat4) {
+                    verd4.setBackgroundResource(R.drawable.azulverdea);
+
+                } else {
+                    verd4.setBackgroundResource(R.drawable.azulverde);
+                }
+                pitjat4 = !pitjat4;
+                break;
         }
     }
 
