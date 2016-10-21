@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         verd3.setOnClickListener(this);
         verd4.setOnClickListener(this);
 
+        //carregar les pistes d'audio (OBSOLET, S'HA d'ARREGLAR)
         soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bass = soundpool.load(this, R.raw.bass1, 1);
         piano = soundpool.load(this, R.raw.piano1, 1);
 
+        //fer que el boto es pari al cap de 2 segons
         temps = new CountDownTimer(2000, 50) {
 
 
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });*/
 
+        //botons que mantens pulsats
         lila1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -216,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
+    //botons que fas click
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -231,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 temps.cancel();
                 temps.start();
 
-
+                //Volum (no es fa servir)
                 AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -242,9 +245,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     pianoID = soundpool.play(piano, 1, 1, 1, 0, 1f);
 
                 }
-
-
-                pitjat1 = !pitjat1;
 
 
                 break;
