@@ -1,8 +1,10 @@
 package acusido.soundpad;
 
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Image;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SoundPool soundpool;
     int bass1,bass2,bass3,bass4, piano1,piano2,piano3,piano4,synth1,synth2,synth3,synth4, bass1so,bass2so,bass3so,bass4so, botoid;
     boolean loaded = false, pitjat1 = false, pitjat2 = false, pitjat3 = false, pitjat4 = false;
-    public CountDownTimer temps;
+    public CountDownTimer temps1, temps2, temps3, temps4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         verd4.setOnClickListener(this);
 
         //carregar les pistes d'audio (OBSOLET, S'HA d'ARREGLAR)
-        soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes attributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build();
+            soundpool = new SoundPool.Builder()
+                    .setAudioAttributes(attributes)
+                    .setMaxStreams(10)
+                    .build();
+            soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    loaded = true;
+                }
+            });
+
+            piano1 = soundpool.load(this, R.raw.piano1, 1);
+            piano2 = soundpool.load(this, R.raw.piano2, 1);
+            piano3 = soundpool.load(this, R.raw.piano3, 1);
+            piano4 = soundpool.load(this, R.raw.piano4, 1);
+
+            bass1 = soundpool.load(this, R.raw.bass1, 1);
+            bass2 = soundpool.load(this, R.raw.bass2, 1);
+            bass3 = soundpool.load(this, R.raw.bass3, 1);
+            bass4 = soundpool.load(this, R.raw.bass4, 1);
+
+            synth1 = soundpool.load(this, R.raw.synth1, 1);
+            synth2 = soundpool.load(this, R.raw.synth2, 1);
+            synth3 = soundpool.load(this, R.raw.synth3, 1);
+            synth4 = soundpool.load(this, R.raw.synth4, 1);
+        } else {
+            soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -46,24 +81,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        piano1 = soundpool.load(this, R.raw.piano1, 1);
-        piano2 = soundpool.load(this, R.raw.piano2, 1);
-        piano3 = soundpool.load(this, R.raw.piano3, 1);
-        piano4 = soundpool.load(this, R.raw.piano4, 1);
+            piano1 = soundpool.load(this, R.raw.piano1, 1);
+            piano2 = soundpool.load(this, R.raw.piano2, 1);
+            piano3 = soundpool.load(this, R.raw.piano3, 1);
+            piano4 = soundpool.load(this, R.raw.piano4, 1);
 
-        bass1 = soundpool.load(this, R.raw.bass1, 1);
-        bass2 = soundpool.load(this, R.raw.bass2, 1);
-        bass3 = soundpool.load(this, R.raw.bass3, 1);
-        bass4 = soundpool.load(this, R.raw.bass4, 1);
+            bass1 = soundpool.load(this, R.raw.bass1, 1);
+            bass2 = soundpool.load(this, R.raw.bass2, 1);
+            bass3 = soundpool.load(this, R.raw.bass3, 1);
+            bass4 = soundpool.load(this, R.raw.bass4, 1);
 
-        synth1 = soundpool.load(this, R.raw.synth1, 1);
-        synth2 = soundpool.load(this, R.raw.synth2, 1);
-        synth3 = soundpool.load(this, R.raw.synth3, 1);
-        synth4 = soundpool.load(this, R.raw.synth4, 1);
+            synth1 = soundpool.load(this, R.raw.synth1, 1);
+            synth2 = soundpool.load(this, R.raw.synth2, 1);
+            synth3 = soundpool.load(this, R.raw.synth3, 1);
+            synth4 = soundpool.load(this, R.raw.synth4, 1);
+        }
+
+
 
 
         //fer que el boto es pari al cap de 2 segons
-        temps = new CountDownTimer(2000, 50) {
+        temps1 = new CountDownTimer(2000, 50) {
 
 
             @Override
@@ -74,20 +112,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFinish() {
-                switch (botoid){
-                    case 1:
+
                         verd1.setBackgroundResource(R.drawable.azulverde);
-                        break;
-                    case 2:
-                        verd2.setBackgroundResource(R.drawable.azulverde);
-                        break;
-                    case 3:
-                        verd3.setBackgroundResource(R.drawable.azulverde);
-                        break;
-                    case 4:
-                        verd4.setBackgroundResource(R.drawable.azulverde);
-                        break;
-                }
+
+
+            }
+        }.start();
+
+        temps2 = new CountDownTimer(2000, 50) {
+
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                verd2.setBackgroundResource(R.drawable.azulverde);
+
+
+            }
+        }.start();
+
+        temps3 = new CountDownTimer(2000, 50) {
+
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                verd3.setBackgroundResource(R.drawable.azulverde);
+
+
+            }
+        }.start();
+
+        temps4 = new CountDownTimer(2000, 50) {
+
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                verd4.setBackgroundResource(R.drawable.azulverde);
+
 
             }
         }.start();
@@ -285,8 +366,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 float volume = actualVolume / maxVolume;
                 // Is the sound loaded already?
 
-                temps.cancel();
-                temps.start();
+                temps1.cancel();
+                temps1.start();
 
                 if (loaded) {
                     soundpool.play(piano1, 1, 1, 1, 0, 1f);
@@ -307,8 +388,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 pitjat2 = !pitjat2;*/
                 verd2.setBackgroundResource(R.drawable.azulverdea);
 
-                temps.cancel();
-                temps.start();
+                temps2.cancel();
+                temps2.start();
 
                 if (loaded) {
                     soundpool.play(piano2, 1, 1, 1, 0, 1f);
@@ -320,8 +401,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.verd3:
 
                 verd3.setBackgroundResource(R.drawable.azulverdea);
-                temps.cancel();
-                temps.start();
+                temps3.cancel();
+                temps3.start();
 
                 if (loaded) {
                     soundpool.play(piano3, 1, 1, 1, 0, 1f);
@@ -333,8 +414,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.verd4:
 
                 verd4.setBackgroundResource(R.drawable.azulverdea);
-                temps.cancel();
-                temps.start();
+                temps4.cancel();
+                temps4.start();
 
                 if (loaded) {
                     soundpool.play(piano4, 1, 1, 1, 0, 1f);
