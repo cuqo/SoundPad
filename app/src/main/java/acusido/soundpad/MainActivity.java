@@ -14,11 +14,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
-    ImageButton verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4;
+    ImageButton verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4,taronja1,taronja2,taronja3,taronja4;
     SoundPool soundpool;
-    int bass1,bass2,bass3,bass4, piano1,piano2,piano3,piano4,synth1,synth2,synth3,synth4, bass1so,bass2so,bass3so,bass4so, botoid;
-    boolean loaded = false, pitjat1 = false, pitjat2 = false, pitjat3 = false, pitjat4 = false;
-    public CountDownTimer temps1, temps2, temps3, temps4;
+    int bass1,bass2,bass3,bass4, piano1,piano2,piano3,piano4,synth1,synth2,synth3,synth4, bass1so,bass2so,bass3so,bass4so,piano1so,piano2so,piano3so,piano4so,synth1so,synth2so,synth3so,synth4so, botoid;
+    boolean loaded = false;
+    public CountDownTimer temps1, temps2, temps3, temps4,temps5,temps6,temps7,temps8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +33,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lila2 = (ImageButton) findViewById(R.id.lila2);
         lila3 = (ImageButton) findViewById(R.id.lila3);
         lila4 = (ImageButton) findViewById(R.id.lila4);
+        taronja1=(ImageButton) findViewById(R.id.taronja1);
+        taronja2=(ImageButton) findViewById(R.id.taronja2);
+        taronja3=(ImageButton) findViewById(R.id.taronja3);
+        taronja4=(ImageButton) findViewById(R.id.taronja4);
 
         verd1.setOnClickListener(this);
         verd2.setOnClickListener(this);
         verd3.setOnClickListener(this);
         verd4.setOnClickListener(this);
 
-        //carregar les pistes d'audio (OBSOLET, S'HA d'ARREGLAR)
+        lila1.setOnClickListener(this);
+        lila2.setOnClickListener(this);
+        lila3.setOnClickListener(this);
+        lila4.setOnClickListener(this);
 
+        taronja1.setOnTouchListener(this);
+        taronja2.setOnTouchListener(this);
+        taronja3.setOnTouchListener(this);
+        taronja4.setOnTouchListener(this);
 
+        //carregar les pistes d'audio
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes attributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
@@ -58,20 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
-            piano1 = soundpool.load(this, R.raw.piano1, 1);
-            piano2 = soundpool.load(this, R.raw.piano2, 1);
-            piano3 = soundpool.load(this, R.raw.piano3, 1);
-            piano4 = soundpool.load(this, R.raw.piano4, 1);
-
-            bass1 = soundpool.load(this, R.raw.bass1, 1);
-            bass2 = soundpool.load(this, R.raw.bass2, 1);
-            bass3 = soundpool.load(this, R.raw.bass3, 1);
-            bass4 = soundpool.load(this, R.raw.bass4, 1);
-
-            synth1 = soundpool.load(this, R.raw.synth1, 1);
-            synth2 = soundpool.load(this, R.raw.synth2, 1);
-            synth3 = soundpool.load(this, R.raw.synth3, 1);
-            synth4 = soundpool.load(this, R.raw.synth4, 1);
         } else {
             soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -80,29 +78,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 loaded = true;
             }
         });
-
-            piano1 = soundpool.load(this, R.raw.piano1, 1);
-            piano2 = soundpool.load(this, R.raw.piano2, 1);
-            piano3 = soundpool.load(this, R.raw.piano3, 1);
-            piano4 = soundpool.load(this, R.raw.piano4, 1);
-
-            bass1 = soundpool.load(this, R.raw.bass1, 1);
-            bass2 = soundpool.load(this, R.raw.bass2, 1);
-            bass3 = soundpool.load(this, R.raw.bass3, 1);
-            bass4 = soundpool.load(this, R.raw.bass4, 1);
-
-            synth1 = soundpool.load(this, R.raw.synth1, 1);
-            synth2 = soundpool.load(this, R.raw.synth2, 1);
-            synth3 = soundpool.load(this, R.raw.synth3, 1);
-            synth4 = soundpool.load(this, R.raw.synth4, 1);
         }
+
+        piano1 = soundpool.load(this, R.raw.piano1, 1);
+        piano2 = soundpool.load(this, R.raw.piano2, 1);
+        piano3 = soundpool.load(this, R.raw.piano3, 1);
+        piano4 = soundpool.load(this, R.raw.piano4, 1);
+
+        bass1 = soundpool.load(this, R.raw.bass1, 1);
+        bass2 = soundpool.load(this, R.raw.bass2, 1);
+        bass3 = soundpool.load(this, R.raw.bass3, 1);
+        bass4 = soundpool.load(this, R.raw.bass4, 1);
+
+        synth1 = soundpool.load(this, R.raw.synth1, 1);
+        synth2 = soundpool.load(this, R.raw.synth2, 1);
+        synth3 = soundpool.load(this, R.raw.synth3, 1);
+        synth4 = soundpool.load(this, R.raw.synth4, 1);
 
 
 
 
         //fer que el boto es pari al cap de 2 segons
         temps1 = new CountDownTimer(2000, 50) {
-
 
             @Override
             public void onTick(long arg0) {
@@ -115,12 +112,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         verd1.setBackgroundResource(R.drawable.azulverde);
 
-
             }
         }.start();
 
         temps2 = new CountDownTimer(2000, 50) {
-
 
             @Override
             public void onTick(long arg0) {
@@ -139,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         temps3 = new CountDownTimer(2000, 50) {
 
-
             @Override
             public void onTick(long arg0) {
                 // TODO Auto-generated method stub
@@ -157,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         temps4 = new CountDownTimer(2000, 50) {
 
-
             @Override
             public void onTick(long arg0) {
                 // TODO Auto-generated method stub
@@ -173,176 +166,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
+        temps5 = new CountDownTimer(7000, 50) {
 
-
-        /*verd1.setOnClickListener(new View.OnClickListener() {
-            boolean pitjat;
             @Override
-            public void onClick(View v) {
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
 
-                if(pitjat) {
-                    verd1.setBackgroundResource(R.drawable.azulverdea);
+            }
 
-                    }
+            @Override
+            public void onFinish() {
 
-                } else{
-                    verd1.setBackgroundResource(R.drawable.azulverde);
-
-                }pitjat=!pitjat;
+                lila1.setBackgroundResource(R.drawable.lila);
 
 
             }
-        });
+        }.start();
 
-        /*verd2.setOnClickListener(new View.OnClickListener() {
-            boolean pitjat;
+        temps6 = new CountDownTimer(7000, 50) {
+
             @Override
-            public void onClick(View v) {
-
-                if(!pitjat) {
-                    verd2.setBackgroundResource(R.drawable.azulverdea);
-                    pitjat = true;
-                } else{
-                    verd2.setBackgroundResource(R.drawable.azulverde);
-                    pitjat=false;
-                }
-            }
-        });
-
-        verd3.setOnClickListener(new View.OnClickListener() {
-            boolean pitjat;
-            @Override
-            public void onClick(View v) {
-
-                if(!pitjat) {
-                    verd3.setBackgroundResource(R.drawable.azulverdea);
-                    pitjat = true;
-                } else{
-                    verd3.setBackgroundResource(R.drawable.azulverde);
-                    pitjat=false;
-                }
-            }
-        });
-
-        verd4.setOnClickListener(new View.OnClickListener() {
-            boolean pitjat;
-            @Override
-            public void onClick(View v) {
-
-                if(!pitjat) {
-                    verd4.setBackgroundResource(R.drawable.azulverdea);
-                    pitjat = true;
-                } else{
-                    verd4.setBackgroundResource(R.drawable.azulverde);
-                    pitjat=false;
-                }
-            }
-        });*/
-
-        //botons que mantens pulsats
-        lila1.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                    lila1.setBackgroundResource(R.drawable.lilaa);
-
-                    AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                    float actualVolume = (float) audioManager
-                            .getStreamVolume(AudioManager.STREAM_MUSIC);
-                    float maxVolume = (float) audioManager
-                            .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-                    float volume = actualVolume / maxVolume;
-                    // Is the sound loaded already?
-
-                    if (loaded) {
-                        bass1so = soundpool.play(bass1, 1, 1, 1, -1, 1f);
-
-                    }
-
-                    return true;
-                }
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    lila1.setBackgroundResource(R.drawable.lila);
-
-                    soundpool.stop(bass1so);
-
-                    return true;
-                }
-                return false;
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
 
             }
-        });
 
-        lila2.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            public void onFinish() {
 
-                    lila2.setBackgroundResource(R.drawable.lilaa);
+                lila2.setBackgroundResource(R.drawable.lila);
 
-                    if (loaded) {
-                        bass2so = soundpool.play(bass2, 1, 1, 1, -1, 1f);
 
-                    }
-                    return true;
-                }
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    lila2.setBackgroundResource(R.drawable.lila);
-                    soundpool.stop(bass2so);
-                    return true;
-                }
-                return false;
             }
-        });
+        }.start();
 
-        lila3.setOnTouchListener(new View.OnTouchListener() {
+        temps7 = new CountDownTimer(7000, 50) {
+
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
 
-                    lila3.setBackgroundResource(R.drawable.lilaa);
-
-                    if (loaded) {
-                        bass3so = soundpool.play(bass3, 1, 1, 1, -1, 1f);
-
-                    }
-                    return true;
-                }
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    lila3.setBackgroundResource(R.drawable.lila);
-                    soundpool.stop(bass3so);
-                    return true;
-                }
-                return false;
             }
-        });
 
-        lila4.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            public void onFinish() {
 
-                    lila4.setBackgroundResource(R.drawable.lilaa);
+                lila3.setBackgroundResource(R.drawable.lila);
 
-                    if (loaded) {
-                        bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
 
-                    }
-                    return true;
-                }
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    lila4.setBackgroundResource(R.drawable.lila);
-                    soundpool.stop(bass4so);
-                    return true;
-                }
-                return false;
             }
-        });
+        }.start();
+
+        temps8 = new CountDownTimer(7000, 50) {
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                lila4.setBackgroundResource(R.drawable.lila);
+
+
+            }
+        }.start();
+
     }
 
     //botons que fas click
@@ -354,23 +245,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.verd1:
 
+                soundpool.stop(piano1so);
                 verd1.setBackgroundResource(R.drawable.azulverdea);
-
-
-
-
-                //Volum (no es fa servir)
-                AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-                float volume = actualVolume / maxVolume;
-                // Is the sound loaded already?
-
                 temps1.cancel();
                 temps1.start();
 
                 if (loaded) {
-                    soundpool.play(piano1, 1, 1, 1, 0, 1f);
+                    piano1so=soundpool.play(piano1, 1, 1, 1, 0, 1f);
 
                 }
 
@@ -379,20 +260,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.verd2:
 
-                /*if (!pitjat2) {
-                    verd2.setBackgroundResource(R.drawable.azulverdea);
-
-                } else {
-                    verd2.setBackgroundResource(R.drawable.azulverde);
-                }
-                pitjat2 = !pitjat2;*/
+                soundpool.stop(piano2so);
                 verd2.setBackgroundResource(R.drawable.azulverdea);
 
                 temps2.cancel();
                 temps2.start();
 
                 if (loaded) {
-                    soundpool.play(piano2, 1, 1, 1, 0, 1f);
+                    piano2so=soundpool.play(piano2, 1, 1, 1, 0, 1f);
 
                 }
                 botoid=2;
@@ -400,12 +275,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.verd3:
 
+                soundpool.stop(piano3so);
                 verd3.setBackgroundResource(R.drawable.azulverdea);
                 temps3.cancel();
                 temps3.start();
 
                 if (loaded) {
-                    soundpool.play(piano3, 1, 1, 1, 0, 1f);
+                    piano3so=soundpool.play(piano3, 1, 1, 1, 0, 1f);
 
                 }
                 botoid=3;
@@ -413,21 +289,173 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.verd4:
 
+                soundpool.stop(piano4so);
                 verd4.setBackgroundResource(R.drawable.azulverdea);
                 temps4.cancel();
                 temps4.start();
 
                 if (loaded) {
-                    soundpool.play(piano4, 1, 1, 1, 0, 1f);
+                    piano4so=soundpool.play(piano4, 1, 1, 1, 0, 1f);
 
                 }
                 botoid=4;
                 break;
+
+            case R.id.lila1:
+
+                soundpool.stop(synth1so);
+                lila1.setBackgroundResource(R.drawable.lilaa);
+                temps5.cancel();
+                temps5.start();
+
+                if (loaded) {
+                    synth1so=soundpool.play(synth1, 1, 1, 1, 0, 1f);
+
+                }
+
+                botoid=5;
+                break;
+
+            case R.id.lila2:
+
+                soundpool.stop(synth2so);
+                lila2.setBackgroundResource(R.drawable.lilaa);
+                temps6.cancel();
+                temps6.start();
+
+                if (loaded) {
+                    synth2so=soundpool.play(synth2, 1, 1, 1, 0, 1f);
+
+                }
+
+                botoid=6;
+                break;
+
+            case R.id.lila3:
+
+                soundpool.stop(synth3so);
+                lila3.setBackgroundResource(R.drawable.lilaa);
+                temps7.cancel();
+                temps7.start();
+
+                if (loaded) {
+                    synth3so=soundpool.play(synth3, 1, 1, 1, 0, 1f);
+
+                }
+
+                botoid=7;
+                break;
+
+            case R.id.lila4:
+
+                soundpool.stop(synth4so);
+                lila4.setBackgroundResource(R.drawable.lilaa);
+                temps8.cancel();
+                temps8.start();
+
+                if (loaded) {
+                    synth4so=soundpool.play(synth4, 1, 1, 1, 0, 1f);
+
+                }
+
+                botoid=8;
+                break;
         }
     }
 
+    //botons que mantens pitjat
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        int id=v.getId();
+
+        switch (id){
+            case R.id.taronja1:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    taronja1.setBackgroundResource(R.drawable.naranjaa);
+
+                    if (loaded) {
+                        bass1so = soundpool.play(bass1, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    taronja1.setBackgroundResource(R.drawable.naranja);
+                    soundpool.stop(bass1so);
+                    return true;
+                }
+                return false;
+
+            case R.id.taronja2:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    taronja2.setBackgroundResource(R.drawable.naranjaa);
+
+                    if (loaded) {
+                        bass2so = soundpool.play(bass2, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    taronja2.setBackgroundResource(R.drawable.naranja);
+                    soundpool.stop(bass2so);
+                    return true;
+                }
+                return false;
+
+            case R.id.taronja3:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    taronja3.setBackgroundResource(R.drawable.naranjaa);
+
+                    if (loaded) {
+                        bass3so = soundpool.play(bass3, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    taronja3.setBackgroundResource(R.drawable.naranja);
+                    soundpool.stop(bass3so);
+                    return true;
+                }
+                return false;
+
+            case R.id.taronja4:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    taronja4.setBackgroundResource(R.drawable.naranjaa);
+
+                    if (loaded) {
+                        bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    taronja4.setBackgroundResource(R.drawable.naranja);
+                    soundpool.stop(bass4so);
+                    return true;
+                }
+                return false;
+
+        }
+
         return false;
     }
+
+    /*
+    @Override
+    protected void onPause(){
+        super.onPause();
+        soundpool.release();
+        //soundpool=null;
+
+    }*/
 }
