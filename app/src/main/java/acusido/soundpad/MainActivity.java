@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         taronja3.setOnTouchListener(this);
         taronja4.setOnTouchListener(this);
 
+        //perque puguem fer servir els controls de volum
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         //carregar les pistes d'audio
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes attributes = new AudioAttributes.Builder()
@@ -166,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
-        temps5 = new CountDownTimer(7000, 50) {
+        temps5 = new CountDownTimer(8000, 50) {
 
             @Override
             public void onTick(long arg0) {
@@ -183,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
-        temps6 = new CountDownTimer(7000, 50) {
+        temps6 = new CountDownTimer(8000, 50) {
 
             @Override
             public void onTick(long arg0) {
@@ -200,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
-        temps7 = new CountDownTimer(7000, 50) {
+        temps7 = new CountDownTimer(8000, 50) {
 
             @Override
             public void onTick(long arg0) {
@@ -217,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }.start();
 
-        temps8 = new CountDownTimer(7000, 50) {
+        temps8 = new CountDownTimer(8000, 50) {
 
             @Override
             public void onTick(long arg0) {
