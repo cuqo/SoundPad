@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         taronja2=(ImageButton) findViewById(R.id.taronja2);
         taronja3=(ImageButton) findViewById(R.id.taronja3);
         taronja4=(ImageButton) findViewById(R.id.taronja4);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
 
         verd1.setOnClickListener(this);
         verd2.setOnClickListener(this);
@@ -75,12 +80,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
             soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-        soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                loaded = true;
-            }
-        });
+            soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    loaded = true;
+                }
+            });
         }
 
         piano1 = soundpool.load(this, R.raw.piano1, 1);
@@ -101,142 +106,172 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        //fer que el boto es pari al cap de 2 segons
-        temps1 = new CountDownTimer(2000, 50) {
+            //fer que el boto es pari al cap de 2 segons
+            temps1 = new CountDownTimer(2000, 50) {
 
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                        verd1.setBackgroundResource(R.drawable.azulverde);
+                    verd1.setBackgroundResource(R.drawable.azulverde);
 
-            }
-        }.start();
+                }
+            }.start();
 
-        temps2 = new CountDownTimer(2000, 50) {
+            temps2 = new CountDownTimer(2000, 50) {
 
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                verd2.setBackgroundResource(R.drawable.azulverde);
-
-
-            }
-        }.start();
-
-        temps3 = new CountDownTimer(2000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                verd3.setBackgroundResource(R.drawable.azulverde);
+                    verd2.setBackgroundResource(R.drawable.azulverde);
 
 
-            }
-        }.start();
+                }
+            }.start();
 
-        temps4 = new CountDownTimer(2000, 50) {
+            temps3 = new CountDownTimer(2000, 50) {
 
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                verd4.setBackgroundResource(R.drawable.azulverde);
-
-
-            }
-        }.start();
-
-        temps5 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila1.setBackgroundResource(R.drawable.lila);
+                    verd3.setBackgroundResource(R.drawable.azulverde);
 
 
-            }
-        }.start();
+                }
+            }.start();
 
-        temps6 = new CountDownTimer(8000, 50) {
+            temps4 = new CountDownTimer(2000, 50) {
 
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                lila2.setBackgroundResource(R.drawable.lila);
-
-
-            }
-        }.start();
-
-        temps7 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila3.setBackgroundResource(R.drawable.lila);
+                    verd4.setBackgroundResource(R.drawable.azulverde);
 
 
-            }
-        }.start();
+                }
+            }.start();
 
-        temps8 = new CountDownTimer(8000, 50) {
+            temps5 = new CountDownTimer(8000, 50) {
 
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                lila4.setBackgroundResource(R.drawable.lila);
+                    lila1.setBackgroundResource(R.drawable.lila);
 
 
-            }
-        }.start();
+                }
+            }.start();
 
+            temps6 = new CountDownTimer(8000, 50) {
+
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    lila2.setBackgroundResource(R.drawable.lila);
+
+
+                }
+            }.start();
+
+            temps7 = new CountDownTimer(8000, 50) {
+
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    lila3.setBackgroundResource(R.drawable.lila);
+
+
+                }
+            }.start();
+
+            temps8 = new CountDownTimer(8000, 50) {
+
+                @Override
+                public void onTick(long arg0) {
+                    // TODO Auto-generated method stub
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    lila4.setBackgroundResource(R.drawable.lila);
+
+
+                }
+            }.start();
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        soundpool.release();
+        soundpool=null;
+        loaded=false;
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundpool.release();
+        soundpool=null;
+        loaded=false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        soundpool.release();
+        soundpool=null;
+        loaded=false;
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 
     //botons que fas click
@@ -244,125 +279,126 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
 
+        if(loaded=true) {
+            switch (id) {
+                case R.id.verd1:
 
-        switch (id) {
-            case R.id.verd1:
+                    soundpool.stop(piano1so);
+                    verd1.setBackgroundResource(R.drawable.azulverdea);
+                    temps1.cancel();
+                    temps1.start();
 
-                soundpool.stop(piano1so);
-                verd1.setBackgroundResource(R.drawable.azulverdea);
-                temps1.cancel();
-                temps1.start();
+                    if (loaded) {
+                        piano1so = soundpool.play(piano1, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    piano1so=soundpool.play(piano1, 1, 1, 1, 0, 1f);
+                    }
 
-                }
+                    botoid = 1;
+                    break;
 
-                botoid=1;
-                break;
+                case R.id.verd2:
 
-            case R.id.verd2:
+                    soundpool.stop(piano2so);
+                    verd2.setBackgroundResource(R.drawable.azulverdea);
 
-                soundpool.stop(piano2so);
-                verd2.setBackgroundResource(R.drawable.azulverdea);
+                    temps2.cancel();
+                    temps2.start();
 
-                temps2.cancel();
-                temps2.start();
+                    if (loaded) {
+                        piano2so = soundpool.play(piano2, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    piano2so=soundpool.play(piano2, 1, 1, 1, 0, 1f);
+                    }
+                    botoid = 2;
+                    break;
 
-                }
-                botoid=2;
-                break;
+                case R.id.verd3:
 
-            case R.id.verd3:
+                    soundpool.stop(piano3so);
+                    verd3.setBackgroundResource(R.drawable.azulverdea);
+                    temps3.cancel();
+                    temps3.start();
 
-                soundpool.stop(piano3so);
-                verd3.setBackgroundResource(R.drawable.azulverdea);
-                temps3.cancel();
-                temps3.start();
+                    if (loaded) {
+                        piano3so = soundpool.play(piano3, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    piano3so=soundpool.play(piano3, 1, 1, 1, 0, 1f);
+                    }
+                    botoid = 3;
+                    break;
 
-                }
-                botoid=3;
-                break;
+                case R.id.verd4:
 
-            case R.id.verd4:
+                    soundpool.stop(piano4so);
+                    verd4.setBackgroundResource(R.drawable.azulverdea);
+                    temps4.cancel();
+                    temps4.start();
 
-                soundpool.stop(piano4so);
-                verd4.setBackgroundResource(R.drawable.azulverdea);
-                temps4.cancel();
-                temps4.start();
+                    if (loaded) {
+                        piano4so = soundpool.play(piano4, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    piano4so=soundpool.play(piano4, 1, 1, 1, 0, 1f);
+                    }
+                    botoid = 4;
+                    break;
 
-                }
-                botoid=4;
-                break;
+                case R.id.lila1:
 
-            case R.id.lila1:
+                    soundpool.stop(synth1so);
+                    lila1.setBackgroundResource(R.drawable.lilaa);
+                    temps5.cancel();
+                    temps5.start();
 
-                soundpool.stop(synth1so);
-                lila1.setBackgroundResource(R.drawable.lilaa);
-                temps5.cancel();
-                temps5.start();
+                    if (loaded) {
+                        synth1so = soundpool.play(synth1, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    synth1so=soundpool.play(synth1, 1, 1, 1, 0, 1f);
+                    }
 
-                }
+                    botoid = 5;
+                    break;
 
-                botoid=5;
-                break;
+                case R.id.lila2:
 
-            case R.id.lila2:
+                    soundpool.stop(synth2so);
+                    lila2.setBackgroundResource(R.drawable.lilaa);
+                    temps6.cancel();
+                    temps6.start();
 
-                soundpool.stop(synth2so);
-                lila2.setBackgroundResource(R.drawable.lilaa);
-                temps6.cancel();
-                temps6.start();
+                    if (loaded) {
+                        synth2so = soundpool.play(synth2, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    synth2so=soundpool.play(synth2, 1, 1, 1, 0, 1f);
+                    }
 
-                }
+                    botoid = 6;
+                    break;
 
-                botoid=6;
-                break;
+                case R.id.lila3:
 
-            case R.id.lila3:
+                    soundpool.stop(synth3so);
+                    lila3.setBackgroundResource(R.drawable.lilaa);
+                    temps7.cancel();
+                    temps7.start();
 
-                soundpool.stop(synth3so);
-                lila3.setBackgroundResource(R.drawable.lilaa);
-                temps7.cancel();
-                temps7.start();
+                    if (loaded) {
+                        synth3so = soundpool.play(synth3, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    synth3so=soundpool.play(synth3, 1, 1, 1, 0, 1f);
+                    }
 
-                }
+                    botoid = 7;
+                    break;
 
-                botoid=7;
-                break;
+                case R.id.lila4:
 
-            case R.id.lila4:
+                    soundpool.stop(synth4so);
+                    lila4.setBackgroundResource(R.drawable.lilaa);
+                    temps8.cancel();
+                    temps8.start();
 
-                soundpool.stop(synth4so);
-                lila4.setBackgroundResource(R.drawable.lilaa);
-                temps8.cancel();
-                temps8.start();
+                    if (loaded) {
+                        synth4so = soundpool.play(synth4, 1, 1, 1, 0, 1f);
 
-                if (loaded) {
-                    synth4so=soundpool.play(synth4, 1, 1, 1, 0, 1f);
+                    }
 
-                }
-
-                botoid=8;
-                break;
+                    botoid = 8;
+                    break;
+            }
         }
     }
 
@@ -453,12 +489,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    /*
-    @Override
-    protected void onPause(){
-        super.onPause();
-        soundpool.release();
-        //soundpool=null;
 
-    }*/
 }
