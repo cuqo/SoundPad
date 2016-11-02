@@ -14,14 +14,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+    Sons sons = new Sons();
     ImageButton verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4,taronja1,taronja2,taronja3,taronja4;
-    SoundPool soundpool;
+    //SoundPool soundpool;
     int bass1,bass2,bass3,bass4, piano1,piano2,piano3,piano4,synth1,synth2,synth3,synth4, bass1so,bass2so,bass3so,bass4so,piano1so,piano2so,piano3so,piano4so,synth1so,synth2so,synth3so,synth4so, botoid;
-    boolean loaded = false;
+    //boolean loaded = false;
     public CountDownTimer temps1, temps2, temps3, temps4,temps5,temps6,temps7,temps8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         taronja2=(ImageButton) findViewById(R.id.taronja2);
         taronja3=(ImageButton) findViewById(R.id.taronja3);
         taronja4=(ImageButton) findViewById(R.id.taronja4);
+
+        sons.buildSP(this);
+        sons.loadSP(this);
+
+
     }
 
     @Override
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         //carregar les pistes d'audio
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes attributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -101,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         synth1 = soundpool.load(this, R.raw.synth1, 1);
         synth2 = soundpool.load(this, R.raw.synth2, 1);
         synth3 = soundpool.load(this, R.raw.synth3, 1);
-        synth4 = soundpool.load(this, R.raw.synth4, 1);
+        synth4 = soundpool.load(this, R.raw.synth4, 1);*/
 
 
 
@@ -247,9 +254,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause(){
         super.onPause();
-        soundpool.release();
-        soundpool=null;
-        loaded=false;
+        soundpool.autoPause();
+
+
 
     }
 
@@ -258,15 +265,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         soundpool.release();
         soundpool=null;
-        loaded=false;
+        sons.setLoaded(false);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundpool.release();
-        soundpool=null;
-        loaded=false;
+        soundpool.autoPause();
     }
 
     @Override
@@ -279,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
 
-        if(loaded=true) {
+        if (sons.isLoaded()) {
             switch (id) {
                 case R.id.verd1:
 
@@ -288,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps1.cancel();
                     temps1.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         piano1so = soundpool.play(piano1, 1, 1, 1, 0, 1f);
 
                     }
@@ -304,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps2.cancel();
                     temps2.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         piano2so = soundpool.play(piano2, 1, 1, 1, 0, 1f);
 
                     }
@@ -318,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps3.cancel();
                     temps3.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         piano3so = soundpool.play(piano3, 1, 1, 1, 0, 1f);
 
                     }
@@ -332,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps4.cancel();
                     temps4.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         piano4so = soundpool.play(piano4, 1, 1, 1, 0, 1f);
 
                     }
@@ -346,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps5.cancel();
                     temps5.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         synth1so = soundpool.play(synth1, 1, 1, 1, 0, 1f);
 
                     }
@@ -361,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps6.cancel();
                     temps6.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         synth2so = soundpool.play(synth2, 1, 1, 1, 0, 1f);
 
                     }
@@ -376,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps7.cancel();
                     temps7.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         synth3so = soundpool.play(synth3, 1, 1, 1, 0, 1f);
 
                     }
@@ -391,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     temps8.cancel();
                     temps8.start();
 
-                    if (loaded) {
+                    if (sons.isLoaded()) {
                         synth4so = soundpool.play(synth4, 1, 1, 1, 0, 1f);
 
                     }
@@ -413,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     taronja1.setBackgroundResource(R.drawable.naranjaa);
 
-                    if (loaded) {
+                    if (Sons sons = new Sons();){
                         bass1so = soundpool.play(bass1, 1, 1, 1, -1, 1f);
 
                     }
@@ -432,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     taronja2.setBackgroundResource(R.drawable.naranjaa);
 
-                    if (loaded) {
+                    if (Sons sons = new Sons();){
                         bass2so = soundpool.play(bass2, 1, 1, 1, -1, 1f);
 
                     }
@@ -451,7 +456,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     taronja3.setBackgroundResource(R.drawable.naranjaa);
 
-                    if (loaded) {
+                    if (Sons sons = new Sons();){
                         bass3so = soundpool.play(bass3, 1, 1, 1, -1, 1f);
 
                     }
@@ -470,7 +475,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     taronja4.setBackgroundResource(R.drawable.naranjaa);
 
-                    if (loaded) {
+                    if (Sons sons = new Sons();){
                         bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
 
                     }
