@@ -208,6 +208,43 @@ public class Sons {
         }
     }
 
+    public void stopSo(int id) {
+        switch (id) {
+            case R.id.verd1:
+
+                soundpool.stop(piano1so);
+
+            case R.id.verd2:
+
+                soundpool.stop(piano2so);
+
+            case R.id.verd3:
+
+                soundpool.stop(piano3so);
+
+            case R.id.verd4:
+
+                soundpool.stop(piano4so);
+
+            case R.id.lila1:
+
+                soundpool.stop(synth1so);
+
+            case R.id.lila2:
+
+                soundpool.stop(synth2so);
+
+            case R.id.lila3:
+
+                soundpool.stop(synth3so);
+
+            case R.id.lila4:
+
+                soundpool.stop(synth4so);
+
+        }
+    }
+
     public boolean isLoaded() {
         return loaded;
     }

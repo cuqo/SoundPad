@@ -20,11 +20,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //SoundPool soundpool;
     int bass1, bass2, bass3, bass4, piano1, piano2, piano3, piano4, synth1, synth2, synth3, synth4, bass1so, bass2so, bass3so, bass4so, piano1so, piano2so, piano3so, piano4so, synth1so, synth2so, synth3so, synth4so, botoid;
     //boolean loaded = false;
-    public CountDownTimer temps1, temps2, temps3, temps4, temps5, temps6, temps7, temps8;
+    CountDownTimer temps1, temps2, temps3, temps4, temps5, temps6, temps7, temps8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //fer que el boto es pari al cap de 2 segons
-        temps1 = new CountDownTimer(2000, 50) {
+        /*temps1 = new CountDownTimer(2000, 50) {
 
             @Override
             public void onTick(long arg0) {
@@ -246,14 +245,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             }
-        }.start();
-
+        }.start();*/
+        //botons.botonsClickTornar(verd1,verd2,verd3,verd4,lila1,lila2,lila3,lila4);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        soundpool.autoPause();
+        //soundpool.autoPause();
 
 
     }
@@ -261,15 +260,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundpool.release();
-        soundpool = null;
+        //soundpool.release();
+        //soundpool = null;
         sons.setLoaded(false);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundpool.autoPause();
+        //soundpool.autoPause();
     }
 
     @Override
@@ -281,8 +280,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
+
+        sons.stopSo(id);
         sons.soClick(id);
-        botons.botonsClick(id);
+        botons.botonsClickTornar(verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
+        botons.botonsClick(id, verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
+
 
         /*if (sons.isLoaded()) {
             switch (id) {
