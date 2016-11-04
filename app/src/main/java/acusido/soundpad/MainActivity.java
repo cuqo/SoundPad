@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sons.stopSo(id);
         sons.soClick(id);
-        botons.botonsClickTornar(verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
+        //botons.botonsClickTornar(verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
         botons.botonsClick(id, verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
 
 
