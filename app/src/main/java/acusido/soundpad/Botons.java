@@ -211,5 +211,53 @@ public class Botons {
 
 
     }
+
+    public void countZero(){
+        temps1.onFinish();
+        temps2.onFinish();
+        temps3.onFinish();
+        temps4.onFinish();
+        temps5.onFinish();
+        temps6.onFinish();
+        temps7.onFinish();
+        temps8.onFinish();
+
+    }
+
+    public void botonsTouchDown(int id, ImageButton taronja1, ImageButton taronja2, ImageButton taronja3, ImageButton taronja4){
+        switch(id){
+            case R.id.taronja1:
+                taronja1.setBackgroundResource(R.drawable.naranjaa);
+                break;
+
+            case R.id.taronja2:
+                taronja2.setBackgroundResource(R.drawable.naranjaa);
+                break;
+            case R.id.taronja3:
+                taronja3.setBackgroundResource(R.drawable.naranjaa);
+                break;
+            case R.id.taronja4:
+                taronja4.setBackgroundResource(R.drawable.naranjaa);
+                break;
+        }
+    }
+
+    public void botonsTouchUp(int id, ImageButton taronja1, ImageButton taronja2, ImageButton taronja3, ImageButton taronja4){
+        switch(id){
+            case R.id.taronja1:
+                taronja1.setBackgroundResource(R.drawable.naranja);
+                break;
+
+            case R.id.taronja2:
+                taronja2.setBackgroundResource(R.drawable.naranja);
+                break;
+            case R.id.taronja3:
+                taronja3.setBackgroundResource(R.drawable.naranja);
+                break;
+            case R.id.taronja4:
+                taronja4.setBackgroundResource(R.drawable.naranja);
+                break;
+        }
+    }
 }
 

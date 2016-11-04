@@ -68,151 +68,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //perque puguem fer servir els controls de volum
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-
-
-
-        //fer que el boto es pari al cap de 2 segons
-        /*temps1 = new CountDownTimer(2000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                verd1.setBackgroundResource(R.drawable.azulverde);
-
-            }
-        }.start();
-
-        temps2 = new CountDownTimer(2000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                verd2.setBackgroundResource(R.drawable.azulverde);
-
-
-            }
-        }.start();
-
-        temps3 = new CountDownTimer(2000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                verd3.setBackgroundResource(R.drawable.azulverde);
-
-
-            }
-        }.start();
-
-        temps4 = new CountDownTimer(2000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                verd4.setBackgroundResource(R.drawable.azulverde);
-
-
-            }
-        }.start();
-
-        temps5 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila1.setBackgroundResource(R.drawable.lila);
-
-
-            }
-        }.start();
-
-        temps6 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila2.setBackgroundResource(R.drawable.lila);
-
-
-            }
-        }.start();
-
-        temps7 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila3.setBackgroundResource(R.drawable.lila);
-
-
-            }
-        }.start();
-
-        temps8 = new CountDownTimer(8000, 50) {
-
-            @Override
-            public void onTick(long arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                lila4.setBackgroundResource(R.drawable.lila);
-
-
-            }
-        }.start();*/
+        //Countdown per apagar botons click
         botons.countDownClick(verd1, verd2, verd3, verd4, lila1, lila2, lila3, lila4);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        //soundpool.autoPause();
+        sons.soundPause();
+        botons.countZero();
 
 
     }
@@ -220,15 +84,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //soundpool.release();
-        //soundpool = null;
+        sons.soundDestroy();
         sons.setLoaded(false);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //soundpool.autoPause();
+        sons.soundPause();
+        botons.countZero();
     }
 
     @Override
@@ -250,19 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
-
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            //taronja1.setBackgroundResource(R.drawable.naranjaa);
-            return sons.soTouchDown(id, event);
-        }
-
-
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            //taronja1.setBackgroundResource(R.drawable.naranja);
-            return sons.soTouchUp(id, event);
-        }
-        return false;
-
+        return sons.soTouch(id, event,taronja1,taronja2,taronja3,taronja4);
 
     }
 

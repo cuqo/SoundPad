@@ -6,12 +6,14 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
+import android.widget.ImageButton;
 
 /**
  * Created by nasty on 2/11/2016.
  */
 
 public class Sons {
+    Botons botons = new Botons();
     protected Context context;
     private boolean loaded = false;
     private int bass1, bass2, bass3, bass4, piano1, piano2, piano3, piano4, synth1, synth2, synth3, synth4, bass1so, bass2so, bass3so, bass4so, piano1so, piano2so, piano3so, piano4so, synth1so, synth2so, synth3so, synth4so, botoid;
@@ -158,87 +160,88 @@ public class Sons {
 
     }
 
-    public boolean soTouchDown(int id, MotionEvent event) {
+
+    public boolean soTouch(int id, MotionEvent event, ImageButton taronja1, ImageButton taronja2, ImageButton taronja3, ImageButton taronja4) {
 
         switch (id) {
             case R.id.taronja1:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                if (loaded) {
-                    bass1so = soundpool.play(bass1, 1, 1, 1, -1, 1f);
+                    botons.botonsTouchDown(id,taronja1,taronja2,taronja3,taronja4);
+                    if (loaded) {
+                        bass1so = soundpool.play(bass1, 1, 1, 1, -1, 1f);
 
+                    }
+                    return true;
                 }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
 
-            case R.id.taronja2:
-
-                if (loaded) {
-                    bass2so = soundpool.play(bass2, 1, 1, 1, -1, 1f);
-
-                }
-
-            case R.id.taronja3:
-
-                if (loaded) {
-                    bass3so = soundpool.play(bass3, 1, 1, 1, -1, 1f);
-
-                }
-
-            case R.id.taronja4:
-
-                if (loaded) {
-                    bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
-
-                }
-        }
-        return true;
-
-
-        /*if (event.getAction() == MotionEvent.ACTION_UP) {
-            switch (id) {
-                case R.id.taronja1:
-
+                    botons.botonsTouchUp(id,taronja1,taronja2,taronja3,taronja4);
                     soundpool.stop(bass1so);
-
-                case R.id.taronja2:
-
-                    soundpool.stop(bass2so);
-
-                case R.id.taronja3:
-
-                    soundpool.stop(bass3so);
-
-                case R.id.taronja4:
-
-                    soundpool.stop(bass4so);
-
-            }
-            return true;
-        }*/
-        //return false;
-    }
-
-    public boolean soTouchUp(int id, MotionEvent event) {
-        //if (event.getAction() == MotionEvent.ACTION_UP) {
-        switch (id) {
-            case R.id.taronja1:
-
-                soundpool.stop(bass1so);
+                    return true;
+                }
+                return false;
 
             case R.id.taronja2:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                soundpool.stop(bass2so);
+                    botons.botonsTouchDown(id,taronja1,taronja2,taronja3,taronja4);
+                    if (loaded) {
+                        bass2so = soundpool.play(bass2, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    botons.botonsTouchUp(id,taronja1,taronja2,taronja3,taronja4);
+                    soundpool.stop(bass2so);
+                    return true;
+                }
+                return false;
 
             case R.id.taronja3:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                soundpool.stop(bass3so);
+                    botons.botonsTouchDown(id,taronja1,taronja2,taronja3,taronja4);
+                    if (loaded) {
+                        bass3so = soundpool.play(bass3, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    botons.botonsTouchUp(id,taronja1,taronja2,taronja3,taronja4);
+                    soundpool.stop(bass3so);
+                    return true;
+                }
+                return false;
 
             case R.id.taronja4:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                soundpool.stop(bass4so);
+                    botons.botonsTouchDown(id,taronja1,taronja2,taronja3,taronja4);
+                    if (loaded) {
+                        bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
+
+                    }
+                    return true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    botons.botonsTouchUp(id,taronja1,taronja2,taronja3,taronja4);
+                    soundpool.stop(bass4so);
+                    return true;
+                }
+                return false;
 
         }
-        //}
-        return true;
+        return false;
     }
+
+
+
 
     public boolean isLoaded() {
         return loaded;
@@ -247,4 +250,15 @@ public class Sons {
     public void setLoaded(boolean loaded) {
         this.loaded = loaded;
     }
+
+    public void soundPause() {
+        soundpool.autoPause();
+    }
+
+    public void soundDestroy(){
+        soundpool.release();
+        soundpool = null;
+    }
 }
+
+
