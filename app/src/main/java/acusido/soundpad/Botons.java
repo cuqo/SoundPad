@@ -15,7 +15,7 @@ public class Botons {
     CountDownTimer temps1, temps2, temps3, temps4, temps5, temps6, temps7, temps8;
 
 
-    public void botonsClick(int id, final ImageButton verd1, ImageButton verd2, ImageButton verd3, ImageButton verd4, ImageButton lila1, ImageButton lila2, ImageButton lila3, ImageButton lila4) {
+    public void botonsClick(int id, ImageButton verd1, final ImageButton verd2, final ImageButton verd3, final ImageButton verd4, final ImageButton lila1, final ImageButton lila2, final ImageButton lila3, final ImageButton lila4) {
 
         switch (id) {
             case R.id.verd1:
@@ -27,36 +27,50 @@ public class Botons {
                 break;
 
             case R.id.verd2:
+                temps2.cancel();
+                temps2.start();
                 verd2.setBackgroundResource(R.drawable.azulverdea);
                 break;
 
             case R.id.verd3:
+                temps3.cancel();
+                temps3.start();
                 verd3.setBackgroundResource(R.drawable.azulverdea);
                 break;
 
             case R.id.verd4:
+                temps4.cancel();
+                temps4.start();
                 verd4.setBackgroundResource(R.drawable.azulverdea);
                 break;
 
             case R.id.lila1:
+                temps5.cancel();
+                temps5.start();
                 lila1.setBackgroundResource(R.drawable.lilaa);
                 break;
 
             case R.id.lila2:
+                temps6.cancel();
+                temps6.start();
                 lila2.setBackgroundResource(R.drawable.lilaa);
                 break;
 
             case R.id.lila3:
+                temps7.cancel();
+                temps7.start();
                 lila3.setBackgroundResource(R.drawable.lilaa);
                 break;
 
             case R.id.lila4:
+                temps8.cancel();
+                temps8.start();
                 lila4.setBackgroundResource(R.drawable.lilaa);
                 break;
         }
     }
 
-    public void botonsClickTornar(final ImageButton verd1, final ImageButton verd2, final ImageButton verd3, final ImageButton verd4, final ImageButton lila1, final ImageButton lila2, final ImageButton lila3, final ImageButton lila4) {
+    public void countDownClick(final ImageButton verd1, final ImageButton verd2, final ImageButton verd3, final ImageButton verd4, final ImageButton lila1, final ImageButton lila2, final ImageButton lila3, final ImageButton lila4) {
         temps1 = new CountDownTimer(2000, 50) {
 
             @Override
@@ -87,7 +101,7 @@ public class Botons {
                 verd2.setBackgroundResource(R.drawable.azulverde);
 
             }
-        }.start();
+        };
 
 
         temps3 = new CountDownTimer(2000, 50) {
@@ -104,7 +118,7 @@ public class Botons {
                 verd3.setBackgroundResource(R.drawable.azulverde);
 
             }
-        }.start();
+        };
 
 
         temps4 = new CountDownTimer(2000, 50) {
@@ -121,9 +135,9 @@ public class Botons {
                 verd4.setBackgroundResource(R.drawable.azulverde);
 
             }
-        }.start();
+        };
 
-        temps5.cancel();
+
         temps5 = new CountDownTimer(8000, 50) {
 
             @Override
@@ -139,7 +153,7 @@ public class Botons {
 
 
             }
-        }.start();
+        };
 
 
         temps6 = new CountDownTimer(8000, 50) {
@@ -157,7 +171,7 @@ public class Botons {
 
 
             }
-        }.start();
+        };
 
 
         temps7 = new CountDownTimer(8000, 50) {
@@ -175,7 +189,7 @@ public class Botons {
 
 
             }
-        }.start();
+        };
 
 
         temps8 = new CountDownTimer(8000, 50) {
@@ -193,7 +207,7 @@ public class Botons {
 
 
             }
-        }.start();
+        };
 
 
     }

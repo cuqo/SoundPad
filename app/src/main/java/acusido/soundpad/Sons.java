@@ -5,6 +5,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.view.MotionEvent;
 
 /**
  * Created by nasty on 2/11/2016.
@@ -65,97 +66,100 @@ public class Sons {
         synth2 = soundpool.load(context, R.raw.synth2, 1);
         synth3 = soundpool.load(context, R.raw.synth3, 1);
         synth4 = soundpool.load(context, R.raw.synth4, 1);
+
+
     }
 
     public void soClick(int id) {
-        if (loaded = true) {
-            switch (id) {
-                case R.id.verd1:
 
-                    soundpool.stop(piano1so);
+        switch (id) {
+            case R.id.verd1:
 
-                    if (loaded) {
-                        piano1so = soundpool.play(piano1, 1, 1, 1, 0, 1f);
+                soundpool.stop(piano1so);
 
-                    }
-                    break;
+                if (loaded) {
+                    piano1so = soundpool.play(piano1, 1, 1, 1, 0, 1f);
 
-                case R.id.verd2:
+                }
+                break;
 
-                    soundpool.stop(piano2so);
+            case R.id.verd2:
 
-                    if (loaded) {
-                        piano2so = soundpool.play(piano2, 1, 1, 1, 0, 1f);
+                soundpool.stop(piano2so);
 
-                    }
-                    break;
+                if (loaded) {
+                    piano2so = soundpool.play(piano2, 1, 1, 1, 0, 1f);
 
-                case R.id.verd3:
+                }
+                break;
 
-                    soundpool.stop(piano3so);
+            case R.id.verd3:
 
-                    if (loaded) {
-                        piano3so = soundpool.play(piano3, 1, 1, 1, 0, 1f);
+                soundpool.stop(piano3so);
 
-                    }
-                    break;
+                if (loaded) {
+                    piano3so = soundpool.play(piano3, 1, 1, 1, 0, 1f);
 
-                case R.id.verd4:
+                }
+                break;
 
-                    soundpool.stop(piano4so);
+            case R.id.verd4:
 
-                    if (loaded) {
-                        piano4so = soundpool.play(piano4, 1, 1, 1, 0, 1f);
+                soundpool.stop(piano4so);
 
-                    }
-                    break;
+                if (loaded) {
+                    piano4so = soundpool.play(piano4, 1, 1, 1, 0, 1f);
 
-                case R.id.lila1:
+                }
+                break;
 
-                    soundpool.stop(synth1so);
+            case R.id.lila1:
 
-                    if (loaded) {
-                        synth1so = soundpool.play(synth1, 1, 1, 1, 0, 1f);
+                soundpool.stop(synth1so);
 
-                    }
-                    break;
+                if (loaded) {
+                    synth1so = soundpool.play(synth1, 1, 1, 1, 0, 1f);
 
-                case R.id.lila2:
+                }
+                break;
 
-                    soundpool.stop(synth2so);
+            case R.id.lila2:
 
-                    if (loaded) {
-                        synth2so = soundpool.play(synth2, 1, 1, 1, 0, 1f);
+                soundpool.stop(synth2so);
 
-                    }
-                    break;
+                if (loaded) {
+                    synth2so = soundpool.play(synth2, 1, 1, 1, 0, 1f);
 
-                case R.id.lila3:
+                }
+                break;
 
-                    soundpool.stop(synth3so);
+            case R.id.lila3:
 
-
-                    if (loaded) {
-                        synth3so = soundpool.play(synth3, 1, 1, 1, 0, 1f);
-
-                    }
-                    break;
-
-                case R.id.lila4:
-
-                    soundpool.stop(synth4so);
+                soundpool.stop(synth3so);
 
 
-                    if (loaded) {
-                        synth4so = soundpool.play(synth4, 1, 1, 1, 0, 1f);
+                if (loaded) {
+                    synth3so = soundpool.play(synth3, 1, 1, 1, 0, 1f);
 
-                    }
-                    break;
-            }
+                }
+                break;
+
+            case R.id.lila4:
+
+                soundpool.stop(synth4so);
+
+
+                if (loaded) {
+                    synth4so = soundpool.play(synth4, 1, 1, 1, 0, 1f);
+
+                }
+                break;
         }
+
     }
 
-    public void soTouchDown(int id) {
+    public boolean soTouchDown(int id, MotionEvent event) {
+
         switch (id) {
             case R.id.taronja1:
 
@@ -185,9 +189,35 @@ public class Sons {
 
                 }
         }
+        return true;
+
+
+        /*if (event.getAction() == MotionEvent.ACTION_UP) {
+            switch (id) {
+                case R.id.taronja1:
+
+                    soundpool.stop(bass1so);
+
+                case R.id.taronja2:
+
+                    soundpool.stop(bass2so);
+
+                case R.id.taronja3:
+
+                    soundpool.stop(bass3so);
+
+                case R.id.taronja4:
+
+                    soundpool.stop(bass4so);
+
+            }
+            return true;
+        }*/
+        //return false;
     }
 
-    public void soTouchUp(int id) {
+    public boolean soTouchUp(int id, MotionEvent event) {
+        //if (event.getAction() == MotionEvent.ACTION_UP) {
         switch (id) {
             case R.id.taronja1:
 
@@ -206,43 +236,8 @@ public class Sons {
                 soundpool.stop(bass4so);
 
         }
-    }
-
-    public void stopSo(int id) {
-        switch (id) {
-            case R.id.verd1:
-
-                soundpool.stop(piano1so);
-
-            case R.id.verd2:
-
-                soundpool.stop(piano2so);
-
-            case R.id.verd3:
-
-                soundpool.stop(piano3so);
-
-            case R.id.verd4:
-
-                soundpool.stop(piano4so);
-
-            case R.id.lila1:
-
-                soundpool.stop(synth1so);
-
-            case R.id.lila2:
-
-                soundpool.stop(synth2so);
-
-            case R.id.lila3:
-
-                soundpool.stop(synth3so);
-
-            case R.id.lila4:
-
-                soundpool.stop(synth4so);
-
-        }
+        //}
+        return true;
     }
 
     public boolean isLoaded() {
