@@ -4,42 +4,72 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 /**
  * Created by nasty on 4/11/2016.
  */
 
 public class SplashActivity extends AppCompatActivity {
+    private static int SPLASH_TIME=3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.splash);
+        setContentView(R.layout.splash);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        /*Thread closeActivity = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.e("Test","Sleep");
+                    setContentView(R.layout.splash);
+                    Thread.sleep(3000);
+
+                } catch (Exception e) {
+                    e.getLocalizedMessage();
+                }
+            }
+        });
+        closeActivity.run();*/
+
+        Thread timerThread = new Thread(){
+            public void run(){
+                try{
+                    setContentView(R.layout.splash);
+                    sleep(5000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        timerThread.run();
         finish();
+        /*Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();*/
 
         //new loadData().execute();
 
 
+
+
+
+
     }
 
-    /*private class loadData extends AsyncTask<Void, Void, Void> {
-        Context context;
+    private class loadData extends AsyncTask<Void, Void, Void> {
 
-        public loadData(Context context) {
-            this.context = context;
-        }
 
         @Override
         protected Void doInBackground(Void... voids) {
             //this.context.getApplicationContext();
             Sons sons = new Sons();
             sons.buildSP(SoundPad.getContext());
-            sons.loadSP(SoundPad.getContext());
+            //sons.loadSP(SoundPad.getContext());
+
             return null;
         }
 
@@ -50,5 +80,5 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }*/
+    }
 }

@@ -1,5 +1,6 @@
 package acusido.soundpad;
 
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Image;
@@ -25,7 +26,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
         setContentView(R.layout.activity_main);
+        sons.buildSP(this);
+        sons.loadSP(this);
 
         verd1 = (ImageButton) findViewById(R.id.verd1);
         verd2 = (ImageButton) findViewById(R.id.verd2);
@@ -40,8 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         taronja3 = (ImageButton) findViewById(R.id.taronja3);
         taronja4 = (ImageButton) findViewById(R.id.taronja4);
 
-        sons.buildSP(this);
-        sons.loadSP(this);
+
 
 
     }

@@ -5,6 +5,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 
@@ -33,22 +34,19 @@ public class Sons {
                     .setAudioAttributes(attributes)
                     .setMaxStreams(10)
                     .build();
-            soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    loaded = true;
-                }
-            });
+
 
         } else {
             soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    loaded = true;
-                }
-            });
+
         }
+        soundpool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                loaded = true;
+            }
+        });
+
     }
 
     public void loadSP(Context context) {
@@ -223,6 +221,7 @@ public class Sons {
                     botons.botonsTouchDown(id,taronja1,taronja2,taronja3,taronja4);
                     if (loaded) {
                         bass4so = soundpool.play(bass4, 1, 1, 1, -1, 1f);
+                        Log.e("Test","Played Sound");
 
                     }
                     return true;
