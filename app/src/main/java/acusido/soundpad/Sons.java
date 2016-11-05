@@ -54,6 +54,11 @@ public class Sons {
     public void loadSP(Context context) {
         this.context = context.getApplicationContext();
 
+        synth1 = soundpool.load(context, R.raw.synth1, 1);
+        synth2 = soundpool.load(context, R.raw.synth2, 1);
+        synth3 = soundpool.load(context, R.raw.synth3, 1);
+        synth4 = soundpool.load(context, R.raw.synth4, 1);
+
         piano1 = soundpool.load(context, R.raw.piano1, 1);
         piano2 = soundpool.load(context, R.raw.piano2, 1);
         piano3 = soundpool.load(context, R.raw.piano3, 1);
@@ -63,12 +68,6 @@ public class Sons {
         bass2 = soundpool.load(context, R.raw.bass2, 1);
         bass3 = soundpool.load(context, R.raw.bass3, 1);
         bass4 = soundpool.load(context, R.raw.bass4, 1);
-
-        synth1 = soundpool.load(context, R.raw.synth1, 1);
-        synth2 = soundpool.load(context, R.raw.synth2, 1);
-        synth3 = soundpool.load(context, R.raw.synth3, 1);
-        synth4 = soundpool.load(context, R.raw.synth4, 1);
-
 
     }
 
