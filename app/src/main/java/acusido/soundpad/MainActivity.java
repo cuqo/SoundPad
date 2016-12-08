@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
 
-        Intent intent = new Intent(this, SplashActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, SplashActivity.class);
+        //startActivity(intent);
         setContentView(R.layout.activity_main);
         sons.buildSP(this);
         sons.loadSP(this);

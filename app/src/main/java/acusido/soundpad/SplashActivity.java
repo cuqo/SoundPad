@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+
         /*Thread closeActivity = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -35,21 +36,22 @@ public class SplashActivity extends AppCompatActivity {
         });
         closeActivity.run();*/
 
-        Thread timerThread = new Thread(){
+        /*Thread timerThread = new Thread(){
             public void run(){
                 try{
                     setContentView(R.layout.splash);
-                    sleep(5000);
+                    sleep(1000);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
             }
         };
-        timerThread.run();
-        finish();
-        /*Intent intent = new Intent(this, MainActivity.class);
+        timerThread.run();*/
+
+        //finish();
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish();*/
+        finish();
 
         //new loadData().execute();
 
