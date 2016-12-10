@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,11 +50,28 @@ public class SplashActivity extends AppCompatActivity {
         timerThread.run();*/
 
         //finish();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+        //finish();
 
         //new loadData().execute();
+
+        new CountDownTimer(4000, 50) {
+
+            @Override
+            public void onTick(long arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                finish();
+
+
+            }
+        }.start();
 
 
 
@@ -62,15 +80,15 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private class loadData extends AsyncTask<Void, Void, Void> {
+    /*private class loadData extends AsyncTask<Void, Void, Void> {
 
 
         @Override
         protected Void doInBackground(Void... voids) {
             //this.context.getApplicationContext();
             Sons sons = new Sons();
-            sons.buildSP(SoundPad.getContext());
-            //sons.loadSP(SoundPad.getContext());
+            sons.buildSP(getApplicationContext());
+            sons.loadSP(getApplicationContext());
 
             return null;
         }
@@ -82,5 +100,5 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }
+    }*/
 }

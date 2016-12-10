@@ -5,6 +5,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Image;
 import android.media.SoundPool;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -27,12 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        setContentView(R.layout.activity_main);
+        new loadData().execute();
         //Intent intent = new Intent(this, SplashActivity.class);
         //startActivity(intent);
-        setContentView(R.layout.activity_main);
-        sons.buildSP(this);
-        sons.loadSP(this);
+
+
+        //sons.buildSP(this);
+        //sons.loadSP(this);
 
         verd1 = (ImageButton) findViewById(R.id.verd1);
         verd2 = (ImageButton) findViewById(R.id.verd2);
@@ -122,6 +125,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         return sons.soTouch(id, event,taronja1,taronja2,taronja3,taronja4);
 
+    }
+
+    public class loadData extends AsyncTask<Void, Void, Void> {
+        Intent intent;
+        @Override
+        protected void onPreExecute() {
+            intent = new Intent(MainActivity.this, SplashActivity.class);
+            startActivity(intent);
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //this.context.getApplicationContext();
+
+            sons.buildSP(getApplicationContext());
+            sons.loadSP(getApplicationContext());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void voids) {
+
+        }
     }
 
 
